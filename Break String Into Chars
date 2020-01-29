@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <sstream>
+
+using namespace std;
+
+int main()
+{
+    vector<char> tokens;
+    char token;
+    string myString = "Hello crazy guy!";
+    
+    istringstream iss(myString);
+    
+    while (iss >> token) {
+        tokens.push_back(token);
+    }
+    
+    for (int i = 0 ; i < tokens.size(); i++) {
+        cout << tokens.at(i) << ",";
+    }
+    
+
+    return 0;
+}
+
+
+//Output: H,e,l,l,o,t,h,e,r,e,c,r,a,z,y,g,u,y,!,
+
+
+
