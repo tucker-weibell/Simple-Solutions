@@ -1,0 +1,61 @@
+#include <set>
+#include <map>
+#include <vector>
+#include <sstream>
+#include <fstream>
+#include <string>
+#include <iostream>
+#include <utility>
+using namespace std;
+
+//The purpose of this function is to return a new file name.
+
+string changeFileName(string fileName) {
+    string newFileName;
+    for (int i = 0; i < fileName.length(); i++) {
+        if (isalpha(fileName[i])) {
+            newFileName.insert(newFileName.end(), fileName[i]);
+        }
+        else {
+            break;
+        }
+    }
+    string finalFile = newFileName + "_set.txt";
+    return finalFile;
+}
+
+
+int main(int argc, char *argv[]) {
+    
+    vector<string> tokens;
+    set<string> words;
+    string next_line;
+    
+    ifstream inFile(argv[1]);
+    
+    while(getline(inFile, next_line)) {
+        string token;
+        istringstream iss(next_line);
+        while(iss >> token) {
+            string noPunc = "";
+            for (auto it = token.begin(); it != token.end(); it++) {
+                if (isalpha(*it)) {
+                    noPunc += *it;
+                }
+            }
+            words.insert(noPunc);
+            tokens.push_back(noPunc);
+        }
+        
+    }
+    
+    ofstream outFile(changeFileName(argv[1]));
+    
+    for (auto it = words.begin(); it != words.end(); it++) {
+        outFile << *it << endl;
+    }
+    
+    
+    return 0;
+}
+
