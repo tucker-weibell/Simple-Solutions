@@ -1,0 +1,23 @@
+
+
+// As long as the algorithm header is included
+// the reverse function for strings is available.
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+    string str = "Hello World";
+    
+    reverse(str.begin(), str.end());
+    
+    cout << str;
+
+    return 0;
+}
+
+
